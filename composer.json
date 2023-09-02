@@ -1,0 +1,41 @@
+{
+  "license": "MIT",
+  "name": "dashifen/wp-theme-dashifen2024",
+  "description": " A (block?) theme for dashifen.com (and, maybe, subdomains thereof) for 2024 (and beyond)!",
+  "type": "wordpress-theme",
+  "authors": [
+    {
+      "name": "David Dashifen Kees",
+      "email": "dashifen@dashifen.com",
+      "role": "developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Dashifen\\Dashifen2024\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=8.2",
+    "dashifen/bumper": "^1.0",
+    "dashifen/wp-handler": "^10.11",
+    "dashifen/wp-templates": "^5.1",
+    "timber/timber": "^1.22"
+  },
+  "config":{
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "extra": {
+    "bump": [
+      "style.css",
+      "package.json"
+    ]
+  },
+  "scripts": {
+    "bumper": "php vendor/dashifen/bumper/bump.php"
+  }
+}
