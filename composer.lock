@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2db78a51f9d4b92c18345f2e59077c17",
+    "content-hash": "ccc7e15cadab3504f4970bfd3045c9e1",
     "packages": [
         {
             "name": "composer/installers",
@@ -153,22 +153,22 @@
         },
         {
             "name": "dashifen/bumper",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/bumper.git",
-                "reference": "8de72ca114659275f9698b4eede117288ca210c8"
+                "reference": "0fa21a600b77ba12dd708c205862ba0ad7f5858d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/bumper/zipball/8de72ca114659275f9698b4eede117288ca210c8",
-                "reference": "8de72ca114659275f9698b4eede117288ca210c8",
+                "url": "https://api.github.com/repos/dashifen/bumper/zipball/0fa21a600b77ba12dd708c205862ba0ad7f5858d",
+                "reference": "0fa21a600b77ba12dd708c205862ba0ad7f5858d",
                 "shasum": ""
             },
             "require": {
                 "dashifen/exception": "^1.2",
                 "dashifen/git-branch": "^1.0",
-                "dashifen/repository": "^3.1",
+                "dashifen/repository": "^4.0",
                 "dashifen/version": "^1.0",
                 "php": ">=8.0"
             },
@@ -192,9 +192,9 @@
             "description": "A PHP script that uses the current Git branch name to update version numbers in a list of files.",
             "support": {
                 "issues": "https://github.com/dashifen/bumper/issues",
-                "source": "https://github.com/dashifen/bumper/tree/2.2.1"
+                "source": "https://github.com/dashifen/bumper/tree/2.3.0"
             },
-            "time": "2023-09-19T15:50:42+00:00"
+            "time": "2023-09-19T18:09:06+00:00"
         },
         {
             "name": "dashifen/case-changing-trait",
@@ -361,21 +361,21 @@
         },
         {
             "name": "dashifen/git-branch",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/git-branch.git",
-                "reference": "8bc3979b5b53bc04cd23d7e93f7d573200a1f10b"
+                "reference": "2618a5dd75bd6e618bc8bc4fc57780c30d234c47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/git-branch/zipball/8bc3979b5b53bc04cd23d7e93f7d573200a1f10b",
-                "reference": "8bc3979b5b53bc04cd23d7e93f7d573200a1f10b",
+                "url": "https://api.github.com/repos/dashifen/git-branch/zipball/2618a5dd75bd6e618bc8bc4fc57780c30d234c47",
+                "reference": "2618a5dd75bd6e618bc8bc4fc57780c30d234c47",
                 "shasum": ""
             },
             "require": {
                 "dashifen/exception": "^1.2",
-                "dashifen/repository": "^3.1",
+                "dashifen/repository": "^4.0",
                 "phlak/semver": "^4.0"
             },
             "type": "library",
@@ -398,29 +398,28 @@
             "description": "An object that encapsulates information embedded in my branch naming scheme.",
             "support": {
                 "issues": "https://github.com/dashifen/git-branch/issues",
-                "source": "https://github.com/dashifen/git-branch/tree/1.1.0"
+                "source": "https://github.com/dashifen/git-branch/tree/1.2.0"
             },
-            "time": "2022-06-22T18:59:47+00:00"
+            "time": "2023-09-19T18:02:51+00:00"
         },
         {
             "name": "dashifen/repository",
-            "version": "3.1.4",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/repository.git",
-                "reference": "486b568e0e9c5b44b5f746aa1794907eab27bb19"
+                "reference": "032cde0eaf6283377816cae340c84b299d6de779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/repository/zipball/486b568e0e9c5b44b5f746aa1794907eab27bb19",
-                "reference": "486b568e0e9c5b44b5f746aa1794907eab27bb19",
+                "url": "https://api.github.com/repos/dashifen/repository/zipball/032cde0eaf6283377816cae340c84b299d6de779",
+                "reference": "032cde0eaf6283377816cae340c84b299d6de779",
                 "shasum": ""
             },
             "require": {
                 "dashifen/case-changing-trait": "^1",
                 "dashifen/exception": "^1",
-                "ext-json": "*",
-                "php": ">=7.4"
+                "php": ">=8.2"
             },
             "type": "library",
             "autoload": {
@@ -430,7 +429,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "WTFPL"
+                "MIT"
             ],
             "authors": [
                 {
@@ -439,12 +438,12 @@
                     "role": "developer"
                 }
             ],
-            "description": "An object with read-only protected properties from which other objects can be extened.",
+            "description": "An object with read-only protected properties from which other objects can be extended.",
             "support": {
                 "issues": "https://github.com/dashifen/repository/issues",
-                "source": "https://github.com/dashifen/repository/tree/3.1.4"
+                "source": "https://github.com/dashifen/repository/tree/4.0.0"
             },
-            "time": "2023-05-30T13:28:50+00:00"
+            "time": "2023-09-05T17:51:39+00:00"
         },
         {
             "name": "dashifen/transformer",
@@ -530,16 +529,16 @@
         },
         {
             "name": "dashifen/wp-debugging",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/wp-debugging.git",
-                "reference": "aa461ad9c36283466bd120660ff7a7c68eb521b0"
+                "reference": "d4cc5c6d1736a8ac909c60cf866b564d0779e9bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/wp-debugging/zipball/aa461ad9c36283466bd120660ff7a7c68eb521b0",
-                "reference": "aa461ad9c36283466bd120660ff7a7c68eb521b0",
+                "url": "https://api.github.com/repos/dashifen/wp-debugging/zipball/d4cc5c6d1736a8ac909c60cf866b564d0779e9bf",
+                "reference": "d4cc5c6d1736a8ac909c60cf866b564d0779e9bf",
                 "shasum": ""
             },
             "require": {
@@ -565,28 +564,28 @@
             "description": "A PHP trait that can be used by other objects for on-screen debugging within a WordPress environment.",
             "support": {
                 "issues": "https://github.com/dashifen/wp-debugging/issues",
-                "source": "https://github.com/dashifen/wp-debugging/tree/1.0.1"
+                "source": "https://github.com/dashifen/wp-debugging/tree/1.0.2"
             },
-            "time": "2020-12-09T19:29:51+00:00"
+            "time": "2023-09-19T18:25:25+00:00"
         },
         {
             "name": "dashifen/wp-handler",
-            "version": "11.0.1",
+            "version": "11.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/wp-handler.git",
-                "reference": "eeff34dd747a408c59cd3a92269055612e5690bc"
+                "reference": "8caba7d6827e833b8152838f3189f967b6697882"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/wp-handler/zipball/eeff34dd747a408c59cd3a92269055612e5690bc",
-                "reference": "eeff34dd747a408c59cd3a92269055612e5690bc",
+                "url": "https://api.github.com/repos/dashifen/wp-handler/zipball/8caba7d6827e833b8152838f3189f967b6697882",
+                "reference": "8caba7d6827e833b8152838f3189f967b6697882",
                 "shasum": ""
             },
             "require": {
                 "dashifen/collection": "^3",
                 "dashifen/exception": "^1",
-                "dashifen/repository": "^3",
+                "dashifen/repository": "^4",
                 "dashifen/transformer": "^2",
                 "dashifen/wp-debugging": "^1",
                 "php": ">=8.2"
@@ -614,28 +613,28 @@
             "description": "An object to define handlers for various WordPress action and filter hooks using protected methods. ",
             "support": {
                 "issues": "https://github.com/dashifen/wp-handler/issues",
-                "source": "https://github.com/dashifen/wp-handler/tree/11.0.1"
+                "source": "https://github.com/dashifen/wp-handler/tree/11.0.2"
             },
-            "time": "2023-09-05T16:57:46+00:00"
+            "time": "2023-09-05T17:57:34+00:00"
         },
         {
             "name": "dashifen/wp-templates",
-            "version": "5.1.2",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/wp-templates.git",
-                "reference": "e31adb91c6050b578bb9578d6651894b9a05832a"
+                "reference": "9a3b547f30b6d0a1bb56a4c516a3cbf5812305ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/wp-templates/zipball/e31adb91c6050b578bb9578d6651894b9a05832a",
-                "reference": "e31adb91c6050b578bb9578d6651894b9a05832a",
+                "url": "https://api.github.com/repos/dashifen/wp-templates/zipball/9a3b547f30b6d0a1bb56a4c516a3cbf5812305ae",
+                "reference": "9a3b547f30b6d0a1bb56a4c516a3cbf5812305ae",
                 "shasum": ""
             },
             "require": {
-                "dashifen/repository": "^3",
+                "dashifen/repository": "^4.0",
                 "dashifen/wp-debugging": "^1.0",
-                "php": ">=7.4"
+                "php": ">8.0"
             },
             "type": "project",
             "autoload": {
@@ -657,9 +656,9 @@
             "description": "A series of objects that encapsulate behaviors for WordPress templates.",
             "support": {
                 "issues": "https://github.com/dashifen/wp-templates/issues",
-                "source": "https://github.com/dashifen/wp-templates/tree/5.1.2"
+                "source": "https://github.com/dashifen/wp-templates/tree/6.0.0"
             },
-            "time": "2021-10-27T21:11:46+00:00"
+            "time": "2023-09-19T18:11:29+00:00"
         },
         {
             "name": "phlak/semver",

@@ -5,11 +5,9 @@ namespace Dashifen\Dashifen2024\Templates\Framework;
 use RegexIterator;
 use Timber\Timber;
 use FilesystemIterator;
-use Timber\Menu as TimberMenu;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Dashifen\Dashifen2024\Theme;
-use Timber\MenuItem as TimberMenuItem;
 use Dashifen\Repository\RepositoryException;
 use Dashifen\Transformer\TransformerException;
 use Dashifen\Dashifen2024\Repositories\MenuItem;
@@ -268,9 +266,8 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     // MenuItem repositories which filters these data keeping only what we
     // need.
     
-    $timberMenu = new TimberMenu($menuLocation);
-    $mapper = fn(TimberMenuItem $item) => new MenuItem($item);
-    return array_map($mapper, $timberMenu->get_items());
+    $menuItems = Timber::get_menu($menuLocation)->get_items();
+    return array_map(fn($item) => new MenuItem($item), $menuItems);
   }
   
   /**
@@ -319,7 +316,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       $context['page']['context'] = print_r($context, true);
     }
     
-    return Timber::fetch($file, $context);
+    return Timber::compile($file, $context);
   }
   
   /**
