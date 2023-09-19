@@ -1,6 +1,6 @@
 <?php
 
-namespace Dashifen\Dashifen2023\Repositories;
+namespace Dashifen\Dashifen2024\Repositories;
 
 use Dashifen\Repository\Repository;
 use Timber\MenuItem as TimberMenuItem;

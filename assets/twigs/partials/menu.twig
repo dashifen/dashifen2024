@@ -1,0 +1,29 @@
+{% if isSubmenu is not defined %}
+  <nav class="menu-container" id="{{ id }}">
+{% endif %}
+
+<ul
+  class="{{ isSubmenu ? 'submenu' : 'menu' }}"
+  {% if isSubmenu is not defined %}
+    aria-label="{{ label }}"
+  {% endif %}
+>
+  {% for item in menu %}
+    <li>
+      <a class="menu-item {{ item.classes|join(' ') }}"
+        data-current="{{ item.current ? 'current' : 'not-current' }}"
+        href="{{ item.url }}">{{ item.label }}</a>
+
+      {% if not noChildren and item.children | length > 0 %}
+        {% include '@partials/menu.twig' with {
+          menu: item.children,
+          isSubmenu: 1
+        } %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% if isSubmenu is not defined %}
+  </nav>
+{% endif %}

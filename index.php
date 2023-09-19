@@ -2,21 +2,20 @@
 
 namespace Dashifen;
 
-use Dashifen\Dashifen2023\Theme;
-use Dashifen\Dashifen2023\Router;
-use Dashifen\Dashifen2023\Templates\Framework\TemplateFactory;
-use Dashifen\Dashifen2023\Templates\Framework\TemplateException;
+use Dashifen\Dashifen2024\Theme;
+use Dashifen\Dashifen2024\Router;
+use Dashifen\Dashifen2024\Templates\Framework\TemplateFactory;
+use Dashifen\Dashifen2024\Templates\Framework\TemplateException;
 
 if (defined('ABSPATH')) {
   (function() {
     try {
       
-      // essentially to see if we could do it, we are ignoring the core
-      // WordPress router in favor of using our own to identify template object
-      // names.  realistically, this shouldn't be done because it wastes some
-      // time as Core attempts to identify the template we should use only for
-      // us to do so again.  but, it was certainly a fun challenge, and it
-      // makes our theme look so much cleaner than it would otherwise.
+      // unlike most classic WP themes, we only have an index.php.  this means
+      // that we have to use it to identify the template object that we use to
+      // produce the requested content.  our Router object will do so, and the
+      // TemplateFactory will use the Router's work to produce the object we
+      // need.  after that, we simply render that template adn we're done.
       
       $templateName = (new Router())->getTemplateObjectName();
       $templateObject = TemplateFactory::produceTemplate($templateName);

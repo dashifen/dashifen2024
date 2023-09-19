@@ -2,11 +2,11 @@
 
 namespace Dashifen;
 
-use Dashifen\Dashifen2023\Theme;
+use Dashifen\Dashifen2024\Theme;
 use Dashifen\Exception\Exception;
-use Dashifen\Dashifen2023\Agents\SilencingAgent;
-use Dashifen\Dashifen2023\Agents\CoreRemovalAgent;
-use Dashifen\Dashifen2023\Agents\HeadAndFootAgent;
+use Dashifen\Dashifen2024\Agents\SilencingAgent;
+use Dashifen\Dashifen2024\Agents\CoreRemovalAgent;
+use Dashifen\Dashifen2024\Agents\HeadAndFootAgent;
 use Dashifen\WPHandler\Agents\Collection\Factory\AgentCollectionFactory;
 
 if (version_compare(PHP_VERSION, '8.0', '<')) {

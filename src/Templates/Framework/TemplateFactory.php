@@ -1,6 +1,6 @@
 <?php
 
-namespace Dashifen\Dashifen2023\Templates\Framework;
+namespace Dashifen\Dashifen2024\Templates\Framework;
 
 use Dashifen\WPDebugging\WPDebuggingTrait;
 
@@ -20,10 +20,10 @@ class TemplateFactory
    */
   public static function produceTemplate(string $template): AbstractTemplate
   {
-    $namespaced = 'Dashifen\\Dashifen2023\\Templates\\' . $template;
+    $namespaced = 'Dashifen\\Dashifen2024\\Templates\\' . $template;
     
     if (!class_exists($namespaced)) {
-      $namespaced = 'Dashifen\\Dashifen2023\\Templates\\DefaultTemplate';
+      $namespaced = 'Dashifen\\Dashifen2024\\Templates\\DefaultTemplate';
     }
     
     // we'll assume that, if it's a class that exists, $template refers to a

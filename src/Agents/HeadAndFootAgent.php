@@ -1,8 +1,8 @@
 <?php
 
-namespace Dashifen\Dashifen2023\Agents;
+namespace Dashifen\Dashifen2024\Agents;
 
-use Dashifen\Dashifen2023\Theme;
+use Dashifen\Dashifen2024\Theme;
 use Dashifen\WPHandler\Agents\AbstractThemeAgent;
 use Dashifen\WPHandler\Handlers\HandlerException;
 
@@ -67,8 +67,8 @@ class HeadAndFootAgent extends AbstractThemeAgent
    */
   protected function addAssets(): void
   {
-    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
     $this->enqueue('assets/dashifen.css', $fonts);
   }
   
@@ -81,8 +81,8 @@ class HeadAndFootAgent extends AbstractThemeAgent
    */
   protected function customizeTitle(): string
   {
-    return !is_front_page()
-      ? sprintf('%s | %s', get_the_title(), 'Dashifen.com')
-      : 'Welcome | Dashifen.com';
+    $titleParts[] = !is_front_page() ? get_the_title() : 'Welcome';
+    $titleParts[] = get_bloginfo('name');
+    return vsprintf('%s | %s', $titleParts);
   }
 }

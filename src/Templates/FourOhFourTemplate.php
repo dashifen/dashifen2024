@@ -1,13 +1,13 @@
 <?php
 
-namespace Dashifen\Dashifen2023\Templates;
+namespace Dashifen\Dashifen2024\Templates;
 
-use Dashifen\Dashifen2023\Templates\Framework\AbstractTemplate;
+use Dashifen\Dashifen2024\Templates\Framework\AbstractTemplate;
 
 class FourOhFourTemplate extends AbstractTemplate
 {
   /**
-   * getTemplateContext
+   * getPageContext
    *
    * Returns an array of information necessary for the compilation of a
    * specific twig template.
@@ -16,7 +16,7 @@ class FourOhFourTemplate extends AbstractTemplate
    *
    * @return array
    */
-  protected function getTemplateContext(array $siteContext): array
+  protected function getPageContext(array $siteContext): array
   {
     return [];
   }

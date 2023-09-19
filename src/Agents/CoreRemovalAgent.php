@@ -1,8 +1,8 @@
 <?php
 
-namespace Dashifen\Dashifen2023\Agents;
+namespace Dashifen\Dashifen2024\Agents;
 
-use Dashifen\Dashifen2023\Theme;
+use Dashifen\Dashifen2024\Theme;
 use Dashifen\WPHandler\Agents\AbstractThemeAgent;
 use Dashifen\WPHandler\Handlers\HandlerException;
 

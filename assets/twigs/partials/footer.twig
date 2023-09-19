@@ -1,0 +1,13 @@
+<footer class="site-footer" role="contentinfo">
+  <p class="copyright">Copyright &copy; {{ year }} David Dashifen Kees</p>
+  {% include "@partials/menu.twig" with {
+    'menu': menus.footer,
+    'id': 'footer-menu',
+    'label': 'Footer Navigation',
+    'noChildren': 1,
+  } %}
+</footer>
+
+{% if debug %}
+  <!-- {{ page.context }} -->
+{% endif %}

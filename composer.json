@@ -17,17 +17,17 @@
   },
   "require": {
     "php": ">=8.2",
-    "dashifen/bumper": "^1.0",
+    "dashifen/bumper": "^2.2",
     "dashifen/wp-handler": "^11.0",
     "dashifen/wp-templates": "^5.1",
-    "timber/timber": "^1.22"
+    "timber/timber": "2.0.0-rc.1"
   },
   "config":{
-    "optimize-autoloader": true,
-    "sort-packages": true,
     "allow-plugins": {
       "composer/installers": true
-    }
+    },
+    "optimize-autoloader": true,
+    "sort-packages": true
   },
   "extra": {
     "bump": [
@@ -36,6 +36,6 @@
     ]
   },
   "scripts": {
-    "bumper": "php vendor/dashifen/bumper/bump.php"
+    "bumper": "php vendor/dashifen/bumper/bump.php --object Dashifen\\Dashifen2024\\Services\\Bumper"
   }
 }

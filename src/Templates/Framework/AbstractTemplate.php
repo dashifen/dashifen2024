@@ -1,6 +1,6 @@
 <?php
 
-namespace Dashifen\Dashifen2023\Templates\Framework;
+namespace Dashifen\Dashifen2024\Templates\Framework;
 
 use RegexIterator;
 use Timber\Timber;
@@ -8,11 +8,11 @@ use FilesystemIterator;
 use Timber\Menu as TimberMenu;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
-use Dashifen\Dashifen2023\Theme;
+use Dashifen\Dashifen2024\Theme;
+use Timber\MenuItem as TimberMenuItem;
 use Dashifen\Repository\RepositoryException;
-use Dashifen\Dashifen2023\Repositories\Song;
 use Dashifen\Transformer\TransformerException;
-use Dashifen\Dashifen2023\Repositories\MenuItem;
+use Dashifen\Dashifen2024\Repositories\MenuItem;
 use Dashifen\WPHandler\Traits\CaseChangingTrait;
 use Dashifen\WPHandler\Handlers\HandlerException;
 use Dashifen\WPHandler\Traits\OptionsManagementTrait;
@@ -171,7 +171,14 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
   {
     $knownVersion = $this->getOption('version');
     $currentVersion = wp_get_theme()->get('Version');
-    if (($isNewVersion = $knownVersion !== $currentVersion)) {
+    $isNewVersion = $knownVersion !== $currentVersion;
+    
+    // if this is a new version, we want to update the known version of the
+    // theme in the database.  we do this quickly here so that the next time
+    // we get back to this method we don't re-do the work to check for new
+    // template files.
+    
+    if ($isNewVersion) {
       $this->updateOption('version', $currentVersion);
     }
     
@@ -192,12 +199,16 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    */
   private function getContext(): array
   {
+    // the site context is the same for all pages throughout on the site.  it
+    // includes things like the main menu or the copyright year.  the page
+    // context is specific to the current request, so it'll be filled with page
+    // content and other information that changes between one request and the
+    // next.
+    
     $siteContext = $this->getSiteContext();
-    $pageContext = $this->getTemplateContext($siteContext);
-    return array_merge($siteContext, [
-      'page' => $pageContext,
-      'home' => is_front_page(),
-    ]);
+    $pageContext = $this->getPageContext($siteContext);
+    
+    return array_merge($siteContext, ['page' => $pageContext]);
   }
   
   /**
@@ -215,6 +226,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
   {
     return [
       'year'  => date('Y'),
+      'home'  => is_front_page(),
       'twig'  => basename($this->getTwig(), '.twig'),
       'debug' => self::isDebug(),
       'site'  => [
@@ -225,7 +237,6 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
           'alt' => 'a witch\'s hat with a purple band and a gold buckle',
           'src' => 'witch-hat.png',
         ],
-        'song'   => new Song(),
       ],
       'menus' => [
         'main'   => $this->getMenu('main'),
@@ -257,22 +268,22 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     // MenuItem repositories which filters these data keeping only what we
     // need.
     
-    $menu = new TimberMenu($menuLocation);
-    $mapper = fn($item) => new MenuItem($item);
-    return array_map($mapper, $menu->get_items());
+    $timberMenu = new TimberMenu($menuLocation);
+    $mapper = fn(TimberMenuItem $item) => new MenuItem($item);
+    return array_map($mapper, $timberMenu->get_items());
   }
   
   /**
-   * getTemplateContext
+   * getPageContext
    *
    * Returns an array of information necessary for the compilation of a
-   * specific twig template.
+   * specific request.
    *
    * @param array $siteContext
    *
    * @return array
    */
-  abstract protected function getTemplateContext(array $siteContext): array;
+  abstract protected function getPageContext(array $siteContext): array;
   
   /**
    * compile
@@ -291,13 +302,17 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
   public function compile(bool $debug = false, ?string $file = null, ?array $context = null): string
   {
     if (($file ??= $this->file) === null) {
-      throw new TemplateException('Cannot compile without a twig file.',
-        TemplateException::UNKNOWN_TWIG);
+      throw new TemplateException(
+        'Cannot compile without a twig file.',
+        TemplateException::UNKNOWN_TWIG
+      );
     }
     
     if (($context ??= $this->context) === null) {
-      throw new TemplateException('Cannot compile without a template\'s context.',
-        TemplateException::UNKNOWN_CONTEXT);
+      throw new TemplateException(
+        "Cannot compile without a template's context.",
+        TemplateException::UNKNOWN_CONTEXT
+      );
     }
     
     if ($debug || self::isDebug()) {

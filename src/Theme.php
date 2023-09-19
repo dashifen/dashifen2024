@@ -1,6 +1,6 @@
 <?php
 
-namespace Dashifen\Dashifen2023;
+namespace Dashifen\Dashifen2024;
 
 use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
@@ -9,7 +9,7 @@ use Dashifen\WPHandler\Handlers\Themes\AbstractThemeHandler;
 
 class Theme extends AbstractThemeHandler
 {
-  public const SLUG = 'dashifen2023';
+  public const SLUG = 'dashifen2024';
   
   private bool $blockTemplateLoader;
   
@@ -93,18 +93,18 @@ class Theme extends AbstractThemeHandler
    *
    * Returns true the first time and false thereafter.  First time, this allows
    * the template_redirect actions to occur.  Subsequently, it'll block the WP
-   * Core template loader from using up some server-side time when we have our
-   * own router as a part of our theme.
+   * Core template loader from using up some server-side time executing the
+   * Core router when we have our own as a part of our theme.
    *
    * @return bool
    */
   protected function blockTemplateLoader(): bool
   {
     // this method needs to return true the first time and false thereafter.
-    // we do this by leaving the property unset so that the first time it gets
-    // set and then returns its new true value.  subsequently, it will be set
-    // and so the !isset test will short-circuit the AND operation and we'll
-    // return false.
+    // we do this by leaving this property unset.  the first time we get here,
+    // it is set and returns its new true value.  subsequently, it will have
+    // already been set, and so the !isset test will short-circuit the AND
+    // operation and we'll return false.
     
     return !isset($this->blockTemplateLoader) && ($this->blockTemplateLoader = true);
   }
@@ -129,10 +129,9 @@ class Theme extends AbstractThemeHandler
       return;
     }
     
-    // otherwise, because we're going to use the method below to block the
-    // default WordPress template loader, we want to include the index.php
-    // template file for our theme now because we won't be relying on WP Core
-    // to do so for us.
+    // otherwise, because we've blocked the default WordPress template loader,
+    // we want to include the index.php template file for our theme now because
+    // we won't be relying on WP Core to do so for us.
     
     include locate_template('index.php');
   }

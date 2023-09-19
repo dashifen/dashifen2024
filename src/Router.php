@@ -1,6 +1,6 @@
 <?php
 
-namespace Dashifen\Dashifen2023;
+namespace Dashifen\Dashifen2024;
 
 use Dashifen\WPDebugging\WPDebuggingTrait;
 use Dashifen\WPHandler\Traits\CaseChangingTrait;
