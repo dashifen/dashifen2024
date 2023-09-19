@@ -17,9 +17,9 @@
   },
   "require": {
     "php": ">=8.2",
-    "dashifen/bumper": "^2.2",
+    "dashifen/bumper": "^2.3",
     "dashifen/wp-handler": "^11.0",
-    "dashifen/wp-templates": "^5.1",
+    "dashifen/wp-templates": "^6.0",
     "timber/timber": "2.0.0-rc.1"
   },
   "config":{

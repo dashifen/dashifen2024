@@ -81,11 +81,6 @@ class Theme extends AbstractThemeHandler
   {
     register_nav_menus(['main' => 'Main Menu', 'footer' => 'Footer Menu']);
     add_theme_support('post-thumbnails', get_post_types(['public' => true]));
-    
-    // this removes the margin that the admin bar usually adds to the html
-    // and body tags.
-    
-    add_theme_support('admin-bar', ['callback' => '__return_false']);
   }
   
   /**
