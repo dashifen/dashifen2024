@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc2f77cf654cec62f5f06ba2d25fc30d",
+    "content-hash": "901bd877d56305bd0519ff53a3071d8c",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -298,21 +298,21 @@
         },
         {
             "name": "dashifen/collection",
-            "version": "2.1.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/collection.git",
-                "reference": "fbe31167b868fb8ced2b6c637039a8ff10749bba"
+                "reference": "3b65c12609f03ff8a6be236f18b81b0c673c1738"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/collection/zipball/fbe31167b868fb8ced2b6c637039a8ff10749bba",
-                "reference": "fbe31167b868fb8ced2b6c637039a8ff10749bba",
+                "url": "https://api.github.com/repos/dashifen/collection/zipball/3b65c12609f03ff8a6be236f18b81b0c673c1738",
+                "reference": "3b65c12609f03ff8a6be236f18b81b0c673c1738",
                 "shasum": ""
             },
             "require": {
                 "dashifen/exception": "^1.2",
-                "php": ">=7.4"
+                "php": ">=8.2"
             },
             "type": "project",
             "autoload": {
@@ -334,9 +334,9 @@
             "description": "An abstract object from which concrete collections can be built.",
             "support": {
                 "issues": "https://github.com/dashifen/collection/issues",
-                "source": "https://github.com/dashifen/collection/tree/2.1.0"
+                "source": "https://github.com/dashifen/collection/tree/3.0.0"
             },
-            "time": "2022-03-02T17:15:14+00:00"
+            "time": "2023-09-02T17:16:06+00:00"
         },
         {
             "name": "dashifen/debugging",
@@ -630,25 +630,25 @@
         },
         {
             "name": "dashifen/wp-handler",
-            "version": "10.12.1",
+            "version": "11.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/wp-handler.git",
-                "reference": "77f3ac63b21f3a1796ddee5de83ff19250891d5b"
+                "reference": "eeff34dd747a408c59cd3a92269055612e5690bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/wp-handler/zipball/77f3ac63b21f3a1796ddee5de83ff19250891d5b",
-                "reference": "77f3ac63b21f3a1796ddee5de83ff19250891d5b",
+                "url": "https://api.github.com/repos/dashifen/wp-handler/zipball/eeff34dd747a408c59cd3a92269055612e5690bc",
+                "reference": "eeff34dd747a408c59cd3a92269055612e5690bc",
                 "shasum": ""
             },
             "require": {
-                "dashifen/collection": "^2",
+                "dashifen/collection": "^3",
                 "dashifen/exception": "^1",
                 "dashifen/repository": "^3",
                 "dashifen/transformer": "^2",
                 "dashifen/wp-debugging": "^1",
-                "php": ">=7.4"
+                "php": ">=8.2"
             },
             "require-dev": {
                 "wp-cli/wp-cli": "^2.5"
@@ -673,9 +673,9 @@
             "description": "An object to define handlers for various WordPress action and filter hooks using protected methods. ",
             "support": {
                 "issues": "https://github.com/dashifen/wp-handler/issues",
-                "source": "https://github.com/dashifen/wp-handler/tree/10.12.1"
+                "source": "https://github.com/dashifen/wp-handler/tree/11.0.1"
             },
-            "time": "2023-06-22T12:14:37+00:00"
+            "time": "2023-09-05T16:57:46+00:00"
         },
         {
             "name": "dashifen/wp-templates",

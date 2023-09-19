@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "dashifen/wp-theme-dashifen2024",
-  "description": " A (block?) theme for dashifen.com (and, maybe, subdomains thereof) for 2024 (and beyond)!",
+  "description": " A theme for dashifen.com (and, maybe, subdomains thereof) for 2024 (and beyond)!",
   "type": "wordpress-theme",
   "authors": [
     {
@@ -18,7 +18,7 @@
   "require": {
     "php": ">=8.2",
     "dashifen/bumper": "^1.0",
-    "dashifen/wp-handler": "^10.11",
+    "dashifen/wp-handler": "^11.0",
     "dashifen/wp-templates": "^5.1",
     "timber/timber": "^1.22"
   },
