@@ -9,7 +9,7 @@ use Dashifen\Dashifen2024\Agents\CoreRemovalAgent;
 use Dashifen\Dashifen2024\Agents\HeadAndFootAgent;
 use Dashifen\WPHandler\Agents\Collection\Factory\AgentCollectionFactory;
 
-if (version_compare(PHP_VERSION, '8.0', '<')) {
+if (version_compare(PHP_VERSION, '8.2', '<')) {
   $message = 'This theme requires at least PHP 8.0; you\'re using %s.';
   die(sprintf($message, PHP_VERSION));
 }

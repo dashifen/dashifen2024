@@ -1,0 +1,37 @@
+html, body {
+  box-sizing: border-box;
+  color: $black;
+  font: normal 125%/1.6 $sanSerif; // usually 20px
+  height: 100%;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+a {
+  &:link,
+  &:visited {
+    color: $purple;
+  }
+  
+  &:active,
+  &:focus,
+  &:hover {
+    color: $yellow;
+  }
+}
+
+body {
+  font-size: rem(18px);
+  position: relative;
+}
+
+nav .menu {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

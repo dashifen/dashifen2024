@@ -21,7 +21,6 @@ class Bumper extends BaselineBumper
     try {
       parent::calculateNextVersion();
     } catch (BumperException $e) {
-      
       if (
         $e->getCode() === BumperException::INVALID_BRANCH
         && 'main' === (string) $this->getGitBranch()

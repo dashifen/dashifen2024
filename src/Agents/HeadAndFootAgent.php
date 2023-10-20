@@ -70,6 +70,7 @@ class HeadAndFootAgent extends AbstractThemeAgent
     $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Poiret+One&display=swap');
     $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
     $this->enqueue('assets/dashifen.css', $fonts);
+    $this->enqueue('assets/dashifen.js');
   }
   
   /**
