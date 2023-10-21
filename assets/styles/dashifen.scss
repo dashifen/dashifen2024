@@ -9,8 +9,9 @@
 @import '../../node_modules/normalize.css/normalize';
 @import 'framework/base';
 
+// now we include SCSS files that help to override our baseline styles to
+// create the look of our specific site.
 
-
-
+@import 'sections/header';
 
 @import 'framework/wordpress';

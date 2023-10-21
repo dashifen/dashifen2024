@@ -1,7 +1,7 @@
 html, body {
   box-sizing: border-box;
   color: $black;
-  font: normal 125%/1.6 $sanSerif; // usually 20px
+  font: normal 125%/1.6 $body; // usually 20px
   height: 100%;
   padding: 0;
 }
@@ -30,7 +30,6 @@ body {
 
 nav .menu {
   display: flex;
-  gap: 1rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
