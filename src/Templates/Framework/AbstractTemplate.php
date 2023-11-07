@@ -9,6 +9,7 @@ use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Dashifen\Dashifen2024\Theme;
 use Dashifen\Repository\RepositoryException;
+use Dashifen\Dashifen2024\Repositories\Song;
 use Dashifen\Transformer\TransformerException;
 use Dashifen\Dashifen2024\Repositories\MenuItem;
 use Dashifen\WPHandler\Traits\CaseChangingTrait;
@@ -229,6 +230,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       'twig'  => basename($this->getTwig(), '.twig'),
       'debug' => self::isDebug(),
       'time'  => (new SolarTime())->toArray(),
+      'song'  => (new Song())->toArray(),
       'site'  => [
         'url'    => home_url(),
         'title'  => 'David Dashifen Kees',
