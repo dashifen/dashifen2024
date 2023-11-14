@@ -31,13 +31,13 @@ class TimeOfDay extends Repository
    * @throws Exception
    */
   public function __construct(
-    private string $format = 'n/j/Y \a\\t h:ia'
+    private readonly string $format = 'n/j/Y \a\\t h:ia'
   ) {
-    //$solarTime = get_transient(self::TRANSIENT);
+    $solarTime = get_transient(self::TRANSIENT);
     
-    //if ($solarTime === false) {
-    $solarTime = $this->getSolarTime();
-    //}
+    if ($solarTime === false) {
+      $solarTime = $this->getSolarTime();
+    }
     
     parent::__construct($solarTime);
   }
@@ -163,7 +163,7 @@ class TimeOfDay extends Repository
     // because the API works only in UTC, that's what we have to work in here,
     // too.
     
-    return $this->getTimestamp('UTC');
+    return $this->getTimestamp('UTC')->getTimestamp();
   }
   
   /**
@@ -175,10 +175,10 @@ class TimeOfDay extends Repository
    * @param string   $timezone
    * @param int|null $timestamp
    *
-   * @return int
+   * @return DateTime
    * @throws Exception
    */
-  private function getTimestamp(string $timezone, ?int $timestamp = null): int
+  private function getTimestamp(string $timezone, ?int $timestamp = null): DateTime
   {
     $timezone = new DateTimeZone($timezone);
     $datetime = new DateTime(timezone: $timezone);
@@ -191,7 +191,7 @@ class TimeOfDay extends Repository
       $datetime->setTimestamp($timestamp);
     }
     
-    return $datetime->getTimestamp();
+    return $datetime;
   }
   
   /**
@@ -257,7 +257,7 @@ class TimeOfDay extends Repository
    */
   protected function getSunrise(): string
   {
-    return date($this->format, $this->getLocalTimestamp($this->sunrise));
+    return $this->getLocalTime($this->sunrise)->format($this->format);
   }
   
   /**
@@ -267,10 +267,10 @@ class TimeOfDay extends Repository
    *
    * @param int $timestamp
    *
-   * @return int
+   * @return DateTime
    * @throws Exception
    */
-  private function getLocalTimestamp(int $timestamp): int
+  private function getLocalTime(int $timestamp): DateTime
   {
     return $this->getTimestamp('America/New_York', $timestamp);
   }
@@ -299,7 +299,7 @@ class TimeOfDay extends Repository
    */
   protected function getSunset(): string
   {
-    return date($this->format, $this->getLocalTimestamp($this->sunset));
+    return $this->getLocalTime($this->sunset)->format($this->format);
   }
   
   /**
@@ -326,7 +326,7 @@ class TimeOfDay extends Repository
    */
   protected function getTomorrow(): string
   {
-    return date($this->format, $this->getLocalTimestamp($this->tomorrow));
+    return $this->getLocalTime($this->tomorrow)->format($this->format);
   }
   
   /**
