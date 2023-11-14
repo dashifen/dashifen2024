@@ -13,7 +13,7 @@ use Dashifen\Dashifen2024\Repositories\Song;
 use Dashifen\Transformer\TransformerException;
 use Dashifen\Dashifen2024\Repositories\MenuItem;
 use Dashifen\WPHandler\Traits\CaseChangingTrait;
-use Dashifen\Dashifen2024\Repositories\SolarTime;
+use Dashifen\Dashifen2024\Repositories\TimeOfDay;
 use Dashifen\WPHandler\Handlers\HandlerException;
 use Dashifen\WPHandler\Traits\OptionsManagementTrait;
 use Dashifen\WPTemplates\AbstractTemplate as AbstractTimberTemplate;
@@ -229,7 +229,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       'home'  => is_front_page(),
       'twig'  => basename($this->getTwig(), '.twig'),
       'debug' => self::isDebug(),
-      'time'  => (new SolarTime())->toArray(),
+      'time'  => (new TimeOfDay())->toArray(),
       'song'  => (new Song())->toArray(),
       'site'  => [
         'url'    => home_url(),
