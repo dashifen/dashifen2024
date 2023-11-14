@@ -20,7 +20,7 @@
     "dashifen/bumper": "^2.3",
     "dashifen/wp-handler": "^11.0",
     "dashifen/wp-templates": "^6.0",
-    "timber/timber": "2.0.0-rc.1"
+    "timber/timber": "^2.0"
   },
   "config":{
     "allow-plugins": {
