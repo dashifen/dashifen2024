@@ -14,8 +14,6 @@ class TimeOfDay extends Repository
 {
   use WPDebuggingTrait;
   
-  private const TRANSIENT = Theme::SLUG . '-solar-time';
-  
   protected int $sunrise;
   protected int $sunset;
   protected int $tomorrow;
@@ -31,15 +29,9 @@ class TimeOfDay extends Repository
    * @throws Exception
    */
   public function __construct(
-    private readonly string $format = 'n/j/Y \a\\t h:ia'
+    private readonly string $format = 'n/j/Y \a\\t g:ia'
   ) {
-    $solarTime = get_transient(self::TRANSIENT);
-    
-    if ($solarTime === false) {
-      $solarTime = $this->getSolarTime();
-    }
-    
-    parent::__construct($solarTime);
+    parent::__construct($this->getSolarTime());
   }
   
   /**
@@ -64,7 +56,7 @@ class TimeOfDay extends Repository
       ? $this->calculatePercent($now, $solarTime->sunset, $solarTime->tomorrow) + 100
       : $this->calculatePercent($now, $solarTime->sunrise, $solarTime->sunset);
     
-    $solarTime = array_merge($solarTime->toArray(), [
+    return array_merge($solarTime->toArray(), [
       'timeOfDayNumber' => $numericTimeOfDay,
       'timeOfDay'       => match (true) {
         $numericTimeOfDay <= 25  => 'morning',
@@ -81,9 +73,6 @@ class TimeOfDay extends Repository
         $numericTimeOfDay <= 200 => 'dawn',
       },
     ]);
-    
-    set_transient(self::TRANSIENT, $solarTime, DAY_IN_SECONDS);
-    return $solarTime;
   }
   
   /**
@@ -97,11 +86,20 @@ class TimeOfDay extends Repository
    */
   private function getApiData(): SolarTime
   {
-    $today = $this->getApiResponse('today');
-    $tomorrow = $this->getApiResponse('tomorrow');
-    return $this->isValidResponse($today) && $this->isValidResponse($tomorrow)
-      ? new SolarTime($today, $tomorrow)
-      : new SolarTime();
+    $transient = Theme::SLUG . '-solar-time';
+    $solarTime = get_transient($transient);
+    
+    if ($solarTime === false) {
+      $today = $this->getApiResponse('today');
+      $tomorrow = $this->getApiResponse('tomorrow');
+      $solarTime = $this->isValidResponse($today) && $this->isValidResponse($tomorrow)
+        ? new SolarTime($today, $tomorrow)
+        : new SolarTime();
+      
+      set_transient($transient, $solarTime, DAY_IN_SECONDS);
+    }
+    
+    return $solarTime;
   }
   
   /**
