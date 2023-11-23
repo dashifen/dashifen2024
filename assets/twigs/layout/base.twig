@@ -10,16 +10,16 @@
 <body {{ function('body_class') }}>
 <a href="#content" class="screen-reader-text">Skip to the Content</a>
 <div class="sticky-footer-wrap">
+  <div class="content-grid">
+    {% include '@partials/header.twig' %}
 
-  {% include '@partials/header.twig' %}
+    <main id="content" aria-labelledby="entry-title">
+      {% block page_title %}{% endblock %}
+      {% block content %}{% endblock %}
+    </main>
 
-  <main id="content" aria-labelledby="entry-title">
-    {% block page_title %}{% endblock %}
-    {% block content %}{% endblock %}
-  </main>
-
-  {% include '@partials/footer.twig' %}
-
+    {% include '@partials/footer.twig' %}
+  </div>
 </div>
 
 {{ function('wp_footer') }}

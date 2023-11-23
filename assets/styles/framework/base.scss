@@ -28,9 +28,12 @@ body {
   position: relative;
 }
 
-nav .menu {
-  display: flex;
-  list-style-type: none;
+ul.menu {
   margin: 0;
   padding: 0;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
