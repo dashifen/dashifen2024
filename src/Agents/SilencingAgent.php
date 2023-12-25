@@ -13,7 +13,8 @@ use Dashifen\WPHandler\Handlers\HandlerException;
  * A silly name for an agent that turns off everything to do with Comments when
  * using this theme.  This should both help to reduce bloat in the Dashboard
  * but also prevent spammers from trying to cram comments into the database
- * when we're not going to be looking at them.
+ * when we're not going to be looking at them.  Code is largely gathered from
+ * https://gist.github.com/mattclements/eab5ef656b2f946c4bfb.
  *
  * @property Theme $handler
  */
@@ -37,14 +38,21 @@ class SilencingAgent extends AbstractThemeAgent
       $this->addAction('admin_menu', 'removeCommentMenuItem', PHP_INT_MAX);
       $this->addAction('admin_bar_menu', 'removeAdminBarCommentItems', PHP_INT_MAX);
       
-      // these last three removals can utilize Core functions as their
-      // callbacks.  because these are not a part of this object, we don't
-      // use the addFilter method to do so.  instead, we use core's add_filter
-      // function
+      if (is_admin()) {
+        $this->addAction('wp_count_comments', 'makeAllCommentCountsZero', PHP_INT_MAX);
+      }
+      
+      // these last removals can utilize Core functions as their callbacks.
+      // because these are not a part of this object, we don't use the
+      // addFilter method to do so.  instead, we use core's add_filter
+      // function.  the last one makes sure that anything that previously had
+      // any comments now things there are none.
       
       add_filter('pings_open', '__return_false', PHP_INT_MAX);
       add_filter('comments_open', '__return_false', PHP_INT_MAX);
+      add_filter('feed_links_show_comments_feed', '__return_false', PHP_INT_MAX);
       add_filter('comments_array', '__return_empty_array', PHP_INT_MAX);
+      add_filter('get_comments_number', '__return_zero', PHP_INT_MAX);
     }
   }
   
@@ -140,5 +148,29 @@ class SilencingAgent extends AbstractThemeAgent
         $adminBar->remove_node('blog-' . $site->userblog_id . '-c');
       }
     }
+  }
+  
+  /**
+   * makeAllCommentCountsZero
+   *
+   * On the admin side, core will run some queries to get information about
+   * comments if any exist, even if it never subsequently uses the data from
+   * them due to the above changes.  Therefore, we're going to tell core that
+   * there are always zero comments and this saves us a bit of time when folks
+   * who are logged in are navigating the WP Dashboard.
+   *
+   * @return object
+   */
+  protected function makeAllCommentCountsZero(): object
+  {
+    return (object) [
+      'approved'       => 0,
+      'moderated'      => 0,
+      'spam'           => 0,
+      'trash'          => 0,
+      'post-trashed'   => 0,
+      'total_comments' => 0,
+      'all'            => 0,
+    ];
   }
 }
