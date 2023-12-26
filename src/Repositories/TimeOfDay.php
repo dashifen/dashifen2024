@@ -40,14 +40,16 @@ class TimeOfDay extends Repository
    * Returns the array of data we need to identify the relative solar time of
    * day in Dash's rough location.
    *
+   * @param bool $forceFetch
+   *
    * @return array
-   * @throws RepositoryException
    * @throws Exception
+   * @throws RepositoryException
    */
-  private function getSolarTime(): array
+  private function getSolarTime(bool $forceFetch = false): array
   {
-    $solarTime = $this->getApiData();
     $now = $this->getCurrentTimestamp();
+    $solarTime = $this->getApiData($forceFetch);
     $numericTimeOfDay = $this->isNight($now, $solarTime->sunset)
       
       // if it's nighttime, we add 100 to our numeric time of day.  this is
@@ -56,23 +58,25 @@ class TimeOfDay extends Repository
       ? $this->calculatePercent($now, $solarTime->sunset, $solarTime->tomorrow) + 100
       : $this->calculatePercent($now, $solarTime->sunrise, $solarTime->sunset);
     
-    return array_merge($solarTime->toArray(), [
-      'timeOfDayNumber' => $numericTimeOfDay,
-      'timeOfDay'       => match (true) {
-        $numericTimeOfDay <= 25  => 'morning',
-        $numericTimeOfDay <= 75  => 'day',
-        $numericTimeOfDay <= 100 => 'evening',
-        
-        // here's where our +100 during the nighttime comes in.  we still
-        // calculate the percentage between sunset and tomorrow's sunrise, but
-        // by adding 100 to it, we get numbers between 100 and 200 during the
-        // night and between 0 and 100 during the day.
-        
-        $numericTimeOfDay <= 125 => 'twilight',
-        $numericTimeOfDay <= 175 => 'night',
-        $numericTimeOfDay <= 200 => 'dawn',
-      },
-    ]);
+    return $numericTimeOfDay > 200
+      ? $this->getSolarTime(true)
+      : array_merge($solarTime->toArray(), [
+        'timeOfDayNumber' => $numericTimeOfDay,
+        'timeOfDay'       => match (true) {
+          $numericTimeOfDay <= 25  => 'morning',
+          $numericTimeOfDay <= 75  => 'day',
+          $numericTimeOfDay <= 100 => 'evening',
+          
+          // here's where our +100 during the nighttime comes in.  we still
+          // calculate the percentage between sunset and tomorrow's sunrise, but
+          // by adding 100 to it, we get numbers between 100 and 200 during the
+          // night and between 0 and 100 during the day.
+          
+          $numericTimeOfDay <= 125 => 'twilight',
+          $numericTimeOfDay <= 175 => 'night',
+          $numericTimeOfDay <= 200 => 'dawn',
+        },
+      ]);
   }
   
   /**
@@ -81,15 +85,17 @@ class TimeOfDay extends Repository
    * When necessary, accesses the sunrise/sunset API or grabs existing
    * information out of the database.
    *
+   * @param bool $forceFetch
+   *
    * @return SolarTime
    * @throws RepositoryException
    */
-  private function getApiData(): SolarTime
+  private function getApiData(bool $forceFetch): SolarTime
   {
     $transient = Theme::SLUG . '-solar-time';
     $solarTime = get_transient($transient);
     
-    if ($solarTime === false) {
+    if ($forceFetch || $solarTime === false) {
       $today = $this->getApiResponse('today');
       $tomorrow = $this->getApiResponse('tomorrow');
       $solarTime = $this->isValidResponse($today) && $this->isValidResponse($tomorrow)
