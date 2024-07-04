@@ -43,15 +43,9 @@ class CoreRemovalAgent extends AbstractThemeAgent
   protected function removeVariousCoreActions(): void
   {
     // this removes the global styles that this theme's not using for the
-    // moment. likely, this will change once we figure out how to better
-    // utilize the theme.json file.
+    // moment.  then we remove some SVGs that are added to the DOM.
     
     remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
-    
-    // this removes some SVGs that are added to the DOM.  like above, this
-    // theme doesn't use them, and in this case, we probably won't add them
-    // back in later because we don't plan on doing so.
-    
     remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
     
     // the following get rid of the emoticon to emoji transformations.  now
@@ -94,7 +88,7 @@ class CoreRemovalAgent extends AbstractThemeAgent
     // these are all added by Core to try and homogenize the editor and the
     // front-end display.  since this theme is not a block theme, it's more
     // or less cruft that we can replace by enqueuing our own editor styles
-    // which we do elsewhere.
+    // which we can do elsewhere as needed.
     
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');

@@ -11,8 +11,8 @@ use Dashifen\WPHandler\Handlers\HandlerException;
  *
  * This agent encapsulates any changes that are made to the document's head
  * and footer.  In essence, if an action or filter is hooked to wp_head,
- * wp_footer, or other actions that happen within the DOM's <head> element,
- * you can find them here.
+ * wp_footer, or other actions that happen within the DOM's <head> element like
+ * wp_enqueue_script, you can find them here.
  *
  * @property Theme $handler
  */
@@ -67,9 +67,8 @@ class HeadAndFootAgent extends AbstractThemeAgent
    */
   protected function addAssets(): void
   {
-    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
-    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap');
+    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Dosis&display=swap');
     $this->enqueue('assets/dashifen.css', $fonts);
     $this->enqueue('assets/dashifen.js');
   }

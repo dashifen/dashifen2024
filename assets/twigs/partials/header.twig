@@ -1,10 +1,16 @@
 <header class="banner" role="banner" aria-labelledby="page-title">
-    <!--img class="logo" alt="{{ site.logo.alt }}" src="{{ site.images ~ site.logo.src }}"-->
+  {% if home %}
+    <h1 id="page-title"><span>David </span>Dashifen<span> Kees</span></h1>
+  {% else %}
+    <p id="page-title"><span>David </span>Dashifen<span> Kees</span></p>
+  {% endif %}
 
+  {% if menus.main | length > 0 %}
     {% include "@partials/menu.twig" with {
       'menu': menus.main,
       'id': 'main-menu',
       'label': 'Main Menu',
       'noChildren': 1,
     } %}
+  {% endif %}
 </header>

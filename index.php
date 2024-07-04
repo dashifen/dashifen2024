@@ -15,7 +15,7 @@ if (defined('ABSPATH')) {
       // that we have to use it to identify the template object that we use to
       // produce the requested content.  our Router object will do so, and the
       // TemplateFactory will use the Router's work to produce the object we
-      // need.  after that, we simply render that template adn we're done.
+      // need.  after that, we simply render that template and we're done.
       
       $templateName = (new Router())->getTemplateObjectName();
       $templateObject = TemplateFactory::produceTemplate($templateName);

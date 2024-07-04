@@ -1,3 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementsByTagName('html')[0].classList.add('js');
+  const htmlClassList = document.getElementsByTagName('html')[0].classList;
+  htmlClassList.remove('no-js');
+  htmlClassList.add('js');
 });

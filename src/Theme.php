@@ -11,7 +11,7 @@ class Theme extends AbstractThemeHandler
 {
   public const SLUG = 'dashifen2024';
   
-  private bool $blockTemplateLoader;
+  private bool $coreTemplateLoaderPrevention;
   
   /**
    * initialize
@@ -28,7 +28,7 @@ class Theme extends AbstractThemeHandler
       $this->addAction('init', 'initializeAgents', 1);
       $this->addFilter('timber/loader/loader', 'addTimberNamespaces');
       $this->addAction('after_setup_theme', 'prepareTheme');
-      $this->addFilter('wp_using_themes', 'blockTemplateLoader');
+      $this->addFilter('wp_using_themes', 'preventCoreTemplateLoader');
       
       // we use the PHP_INT_MAX as the priority level for this action which all
       // but guarantees that we'll be running it last.  this allows us to use
@@ -84,16 +84,16 @@ class Theme extends AbstractThemeHandler
   }
   
   /**
-   * blockTemplateLoader
+   * preventCoreTemplateLoader
    *
    * Returns true the first time and false thereafter.  First time, this allows
-   * the template_redirect actions to occur.  Subsequently, it'll block the WP
-   * Core template loader from using up some server-side time executing the
+   * the template_redirect actions to occur.  Subsequently, it'll prevent the
+   * WP Core template loader from using up some server-side time executing the
    * Core router when we have our own as a part of our theme.
    *
    * @return bool
    */
-  protected function blockTemplateLoader(): bool
+  protected function preventCoreTemplateLoader(): bool
   {
     // this method needs to return true the first time and false thereafter.
     // we do this by leaving this property unset.  the first time we get here,
@@ -101,7 +101,8 @@ class Theme extends AbstractThemeHandler
     // already been set, and so the !isset test will short-circuit the AND
     // operation and we'll return false.
     
-    return !isset($this->blockTemplateLoader) && ($this->blockTemplateLoader = true);
+    return !isset($this->coreTemplateLoaderPrevention)
+      && ($this->coreTemplateLoaderPrevention = true);
   }
   
   /**

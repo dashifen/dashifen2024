@@ -207,7 +207,6 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     
     $siteContext = $this->getSiteContext();
     $pageContext = $this->getPageContext($siteContext);
-    
     return array_merge($siteContext, ['page' => $pageContext]);
   }
   
@@ -243,6 +242,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       'menus' => [
         'main'   => $this->getMenu('main'),
         'footer' => $this->getMenu('footer'),
+        'admin'  => is_admin_bar_showing(),
       ],
     ];
   }

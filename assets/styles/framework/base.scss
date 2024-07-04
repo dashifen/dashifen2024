@@ -3,7 +3,16 @@ html, body {
   color: $black;
   font: normal 125%/1.6 $body; // usually 20px
   height: 100%;
+  margin: 0;
   padding: 0;
+}
+
+html.admin-bar {
+  height: calc(100% - 32px);
+  
+  @include adminBarBreakpoint {
+    height: calc(100% - 46px);
+  }
 }
 
 *, *::before, *::after {
@@ -25,10 +34,25 @@ a {
 
 body {
   font-size: rem(18px);
-  position: relative;
+  margin: 0 auto;
+  width: 90%;
+  
+  // sticky footer source:
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Sticky_footers#the_recipe
+  
+  .sticky-footer-pusher {
+    height: 100%;
+  }
+  
+  .sticky-footer-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100%;
+  }
 }
 
 ul.menu {
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }

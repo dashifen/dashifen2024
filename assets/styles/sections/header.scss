@@ -1,0 +1,70 @@
+header.banner {
+  text-align: center;
+  
+  #page-title {
+    font-family: $headings;
+    font-size: rem(32px);
+    font-weight: normal;
+    margin: 0;
+    padding-block-start: rem(32px);
+    
+    span {
+      display: none;
+      
+      @include onLandscape {
+        display: inline;
+      }
+    }
+  }
+  
+  svg {
+    cursor: pointer;
+    
+    @include onTablets {
+      display: none;
+    }
+  }
+  
+  .menu-container {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-in-out;
+    
+    .menu {
+      font-size: rem(16px);
+      overflow: hidden;
+    }
+    
+    @include onTablets {
+      display: block;
+      
+      .menu li {
+        display: inline-block;
+        padding-inline: rem(8px);
+      }
+    }
+  }
+  
+  #menu-toggle {
+    & + label .closer {
+      display: none;
+    }
+    
+    &:checked {
+      & + label {
+        .opener {
+          display: none;
+        }
+        
+        .closer {
+          display: inline;
+        }
+      }
+      
+      & ~ .menu-container {
+        grid-template-rows: 1fr;
+      }
+    }
+  }
+}
+

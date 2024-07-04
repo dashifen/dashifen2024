@@ -52,6 +52,7 @@ class SilencingAgent extends AbstractThemeAgent
       add_filter('comments_open', '__return_false', PHP_INT_MAX);
       add_filter('feed_links_show_comments_feed', '__return_false', PHP_INT_MAX);
       add_filter('comments_array', '__return_empty_array', PHP_INT_MAX);
+      add_filter('the_comments', '__return_empty_array', PHP_INT_MAX);
       add_filter('get_comments_number', '__return_zero', PHP_INT_MAX);
     }
   }
