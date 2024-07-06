@@ -35,6 +35,7 @@ a {
 body {
   font-size: rem(18px);
   margin: 0 auto;
+  max-width: 800px;
   width: 90%;
   
   // sticky footer source:
@@ -48,6 +49,10 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100%;
+  }
+  
+  @include onTablets {
+    padding-inline: min(10%, rem(220px));
   }
 }
 

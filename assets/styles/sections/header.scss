@@ -31,16 +31,43 @@ header.banner {
     transition: grid-template-rows 0.5s ease-in-out;
     
     .menu {
-      font-size: rem(16px);
+      font-size: 0;
       overflow: hidden;
+      text-transform: uppercase;
+    }
+    
+    .menu-item-container {
+      padding-block: rem(2px);
+    }
+    
+    .menu-item {
+      color: $black;
+      font-size: rem(14px);
+      text-decoration: none;
+      
+      &:active, &:focus, &:hover {
+        text-decoration: underline;
+      }
     }
     
     @include onTablets {
       display: block;
       
-      .menu li {
+      .menu-item-container {
         display: inline-block;
         padding-inline: rem(8px);
+        position: relative;
+        
+        &::after {
+          content: '•';
+          font-size: rem(14px);
+          position: absolute;
+          right: -3.25px;
+        }
+        
+        &:last-child::after {
+          content: '';
+        }
       }
     }
   }

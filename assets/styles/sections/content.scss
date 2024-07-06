@@ -1,0 +1,37 @@
+#content-container {
+  margin-top: 2rem;
+  
+  
+  
+}
+
+body.home {
+  #entry-title {
+    @extend %visually-hidden;
+  }
+  
+  .highlight {
+    background: $gray;
+    border-radius: 50px;
+    color: $white;
+    display: grid;
+    grid-template-columns: 47.5% 47.5%;
+    justify-content: space-between;
+    padding: 50px;
+    position: relative;
+    right: 25px;
+    width: calc(100% + 50px);
+    
+    * {
+      margin-block-start: 0;
+    }
+    
+    figure {
+      margin-inline: 0;
+    }
+    
+    img {
+      max-width: 100%;
+    }
+  }
+}

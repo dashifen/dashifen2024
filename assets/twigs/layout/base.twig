@@ -15,6 +15,12 @@
       {% include '@partials/header.twig' %}
 
       <main id="content-container" aria-labelledby="entry-title">
+        <header>
+          {% block entry_title %}
+            <h1 id="entry-title">{{ page.entry_title }}</h1>
+          {% endblock %}
+        </header>
+
         {% block content %}{% endblock %}
       </main>
 

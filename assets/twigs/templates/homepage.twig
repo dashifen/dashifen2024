@@ -1,1 +1,27 @@
 {% extends '@layout/base.twig' %}
+
+{% block entry_title %}
+  <h2 id="entry-title">{{ page.entry_title }}</h2>
+{% endblock %}
+
+{% block content %}
+  <section class="highlight">
+    <div class="left">
+      <p>Hello, and welcome to my corner of the Internet.</p>
+
+      <p>My name is David Dashifen Kees and my pronouns are they, them, and
+        theirs. By day, I’m a professional nerd working for Georgetown
+        University, a modern-day priestex of Hestia, a seminary-trained
+        theologian, and a coordinator for the Firefly House. By night, I’m
+        more or less the same things but asleep.</p>
+    </div>
+    <figure class="right">
+      <img src="https://dashifen.com/wp-content/uploads/2023/03/avatar-full.jpg"
+        alt="dash wearing a red shirt and gray cardigan sipping a strawberry milkshake through a straw">
+      <figcaption>Dash in 2023</figcaption>
+    </figure>
+  </section>
+
+
+
+{% endblock %}

@@ -18,6 +18,9 @@ class HomepageTemplate extends AbstractTemplate
    */
   protected function getPageContext(array $siteContext): array
   {
-    return ['title' => 'David Dashifen Kees'];
+    return [
+      'title'           => 'Home',
+      'entry_title'     => 'A Bit About Dash',
+    ];
   }
 }
